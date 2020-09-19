@@ -35,9 +35,8 @@ img {
 }
 
 .carrito {
-  /*display:inline-block;*/
-  height: 52px;
-  width: 52px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
   vertical-align: middle;
   background-color: #5A6C79;
@@ -51,7 +50,6 @@ img {
 }
 
 .about, .contact {
-    /*display: inline-block;*/
     background-color:#5A6C79 ;
     border: none;
     color: white;

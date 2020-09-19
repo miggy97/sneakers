@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <NavBar/>
+    <SneakerCard color="black" bgColor=" #222A2C"/>
   </div>
 </template>
 
 <script>
 import NavBar from './components/NavBar'
+import SneakerCard from './components/SneakerCard'
 
 export default {
   name: 'App',
   components: {
-    NavBar
+    NavBar,
+    SneakerCard
   }
 }
 </script>
