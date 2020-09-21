@@ -16,6 +16,16 @@ export default {
 
 <style scoped>
 
+.header{
+    background-color: white;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 1;
+}
+
 img {
     display: inline-block;
     vertical-align:middle;

@@ -25,6 +25,7 @@ export default {
     background-color: #222A2C;
     width: 200px;
     border-radius: 30px;
+    margin-top: 30px;
 }
 
 .shoe{
