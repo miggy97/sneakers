@@ -26,6 +26,12 @@ export default {
     width: 200px;
     border-radius: 30px;
     margin-top: 30px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 18px 0 rgba(0,0,0,0.2);
 }
 
 .shoe{

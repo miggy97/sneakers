@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <NavBar/>
-    <div style="height: 150px"></div>
+    <div style="height: 100px"></div>
     <div class="cards">
       <SneakerCard color="black" bgColor="#222A2C"/>
       <SneakerCard color="yellow" bgColor="#D6BE4A"/>
