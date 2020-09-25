@@ -3,8 +3,23 @@
         <img class="shoe" alt="shoe" src="../assets/shoe-logo.png">
         <h3 class="color">{{color}}</h3>
         <div class="container" :style="{backgroundColor: bgColor}">
-            <a class="coin" href="#"><h2 class="simbol">$</h2></a>
-            <button class="price"><b>25 $</b></button>
+            <button class="coin" @click="playAnimation">
+                <h2 class="simbol" v-if="isDollar">$</h2>
+                <h2 class="simbol" v-if="!isDollar">€</h2>
+            </button>
+            <button class="price">
+                <number
+                class="bold transition"
+                ref="number2"
+                :from="numberFrom"
+                :format="theFormat"
+                animationPaused
+                :to="numberTo"
+                :duration="duration"
+                easing="Power4.easeOut"/>
+                <b v-if="isDollar"> $</b>
+                <b v-if="!isDollar"> €</b>
+            </button>
             <button class="buy" :style="{color: bgColor}"><b>BUY</b></button>
         </div>
     </div>
@@ -16,7 +31,32 @@ export default {
     props: {
         color: String,
         bgColor: String
-    }   
+    },
+    data() {
+        return {
+            numberFrom: 50,
+            numberTo: 43,
+            duration: 2,
+            isDollar: true
+        };
+    },   
+    methods: {
+        theFormat(number) {
+            return number.toFixed(0);
+        },
+        playAnimation() {
+            this.isDollar = !this.isDollar;
+            if (this.isDollar){
+                this.numberFrom = 50;
+                this.numberTo = 43;
+            }
+            else{
+                this.numberFrom = 43;
+                this.numberTo = 50;
+            }
+            this.$refs.number2.play();
+        }
+    }
 }
 </script>
 
@@ -55,10 +95,19 @@ export default {
     margin-top: 28px;
     margin-left: 13px;
     text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    transition: 0.2s;
+}
+
+
+button:focus {
+    outline-style: none;
 }
 
 .simbol{
-    margin: 3px;
+    margin: -2.5px 0px 0px 0px;
     color:  #222A2C;
     font-family: Tahoma;
     font-style: normal;
@@ -80,6 +129,14 @@ export default {
     margin-left: 7px;
 }
 
+.bold {
+  font-weight: bold;
+  font-size: 14px;
+}
+.transition {
+  transition: all 0.3s ease-in;
+}
+
 .buy{
     background-color:white ;
     border: none;
@@ -94,6 +151,12 @@ export default {
     border-radius: 12px;
     cursor: pointer;
     margin-left: 7px;
+    transition: 0.2s;
+}
+
+.buy:hover, .coin:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 18px 0 rgba(0,0,0,0.2);
 }
 
 .color{

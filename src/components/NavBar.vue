@@ -7,12 +7,21 @@
             </ul>
         </div>
         <div class="header" :class="{'open':showNav}">
-            <img alt="Sneakers logo" src="../assets/logo-sneakers.png" >
-            <h1 class="brand">SNEAKERS</h1>
-            <a href="javascript:void();" class="btn-menu" v-if="mobileView"
-            @click="showNav= !showNav">
-                <img src="../assets/menu.svg" alt="menu button" class="menu">
-            </a>
+            <!-- Logo -->
+            <transition name="anim" appear 
+            :appear-class="appear"
+            :appear-active-class="appear-active">
+                <img alt="Sneakers logo" src="../assets/logo-sneakers.png" >
+            </transition>
+            <!-- Brand name -->
+            <transition name="anim" appear 
+            :appear-class="appear"
+            :appear-active-class="appear-active">
+                <h1 class="brand">SNEAKERS</h1>
+            </transition>
+            <div :class="['bt-menu-trigger', {'bt-menu-open': showNav}, 'menu']" v-if="mobileView" @click="showNav= !showNav">
+                <span></span>
+            </div>
             <button class="contact" v-if="!mobileView">contact</button>
             <button class="about" v-if="!mobileView">about</button>
             <a class="carrito" href="#"></a>
@@ -111,9 +120,19 @@ img {
     font-weight: bold;
     font-size: 20px;
     line-height: 43px;
-
     color: #5A6C79;
 }
+
+.anim-enter-to,
+.anim-leave-to {
+  transition: all 2s ease;
+}
+
+.anim-enter, .anim-leave-to {
+  transform: translateX(50px);
+  opacity: 0;
+}
+
 
 .carrito {
   height: 50px;
@@ -130,15 +149,10 @@ img {
   margin-right:20px;
 }
 
-.btn-menu {
-    float: right;
-}
-
 .menu {
-    width: 45px;
-    height: 45px;
+    float: right;
     vertical-align: middle;
-    margin-top: 30px;
+    margin-top: 28px;
     margin-right: 15px;
 }
 
@@ -159,6 +173,69 @@ img {
     margin-right: 15px;
     cursor: pointer;
 }
+
+/*Hamburger animation */
+.bt-menu-trigger {
+    font-size: 25px;
+    position: relative;
+    display: inline-block;
+    width: 1.9em;
+    height: 2em;
+    cursor: pointer;
+}
+
+.bt-menu-trigger span {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: 0.2em;
+	margin-top: -0.1em;
+	background-color: #5A6C79;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-transition: background-color 0.3s;
+	transition: background-color 0.3s;
+}
+
+
+.bt-menu-trigger span:after,
+.bt-menu-trigger span:before {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #5A6C79;
+	content: '';
+	-webkit-transition: -webkit-transform 0.5s;
+	transition: transform 0.5s;
+}
+
+.bt-menu-trigger span:before {
+	-webkit-transform: translateY(-0.5em);
+	transform: translateY(-0.5em);
+}
+
+.bt-menu-trigger span:after {
+	-webkit-transform: translateY(0.5em);
+	transform: translateY(0.5em);
+}
+
+.bt-menu-trigger.bt-menu-open span:before {
+	-webkit-transform: translateY(-0.36em) translateX(0.65em) rotate(45deg) scaleX(0.6);
+	transform: translateY(-0.35em) translateX(0.65em) rotate(45deg) scaleX(0.6);
+}
+
+.bt-menu-trigger.bt-menu-open span:after {
+	-webkit-transform: translateY(0.36em) translateX(0.65em) rotate(-45deg) scaleX(0.6);
+	transform: translateY(0.35em) translateX(0.65em) rotate(-45deg) scaleX(0.6);
+}
+/*End Hamburger animation */
 
 
 </style>
