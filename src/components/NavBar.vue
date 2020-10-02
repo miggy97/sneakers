@@ -11,20 +11,31 @@
             <transition name="anim" appear 
             :appear-class="appear"
             :appear-active-class="appear-active">
-                <img alt="Sneakers logo" src="../assets/logo-sneakers.png" >
+                <img v-if="showLogo" alt="Sneakers logo" src="../assets/logo-sneakers.png" >
             </transition>
             <!-- Brand name -->
+            <h1 class="sortBrand" v-if="!showLogo">SNK</h1>
             <transition name="anim" appear 
             :appear-class="appear"
             :appear-active-class="appear-active">
-                <h1 class="brand">SNEAKERS</h1>
+                <h1 class="brand" v-if="showBrand">SNEAKERS</h1>
             </transition>
             <div :class="['bt-menu-trigger', {'bt-menu-open': showNav}, 'menu']" v-if="mobileView" @click="showNav= !showNav">
                 <span></span>
             </div>
             <button class="contact" v-if="!mobileView">contact</button>
             <button class="about" v-if="!mobileView">about</button>
-            <a class="carrito" href="#"></a>
+            <a class="carrito" href="#">
+                <div class="count-buy" v-if="buyCount >= 1"><h6 class="buy-counter">{{ buyCount }}</h6></div>
+                <!-- Wave animation -->
+                <div :class="{'container': buyAnim}">
+                    <div class="box">
+                        <span style="--i:1;"></span>
+                        <span style="--i:2;"></span>
+                        <span style="--i:3;"></span>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 </template>
@@ -35,12 +46,18 @@ export default {
     data: ( ) => {
         return {
             mobileView: false,
-            showNav: false
+            showNav: false,
+            showBrand: true,
+            showLogo:true,
+            buyAnim: false,
+            buyCount: 0
         }
     },
     methods: {
         handleView(){
             this.mobileView = window.innerWidth <= 700;
+            this.showBrand = window.innerWidth >= 500;
+            this.showLogo = window.innerWidth >= 420;
         },
         handleMenu(){
             if(this.showNav === true && window.innerWidth > 700){
@@ -53,10 +70,16 @@ export default {
         window.addEventListener('resize', () => {
             this.handleView();
             this.handleMenu();
-        })
+        });
+        
     },
     created(){
-        this.handleView();
+        this.handleView(),
+        this.$root.$on('newBuy', () => {
+            this.buyCount += 1;
+            this.buyAnim = true;
+            setTimeout(() => this.buyAnim = false, 3000);
+        })
     }
 }
 </script>
@@ -123,6 +146,18 @@ img {
     color: #5A6C79;
 }
 
+.sortBrand {
+    display: inline-block;
+    font-family: Tahoma;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 43px;
+    color: #5A6C79;
+    margin-top: 30px;
+    margin-left: 20px
+}
+
 .anim-enter-to,
 .anim-leave-to {
   transition: all 2s ease;
@@ -133,6 +168,46 @@ img {
   opacity: 0;
 }
 
+.container{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    float: right;
+    align-items: center;
+    flex-direction: column;
+    z-index: -1;
+}
+
+.container .box {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .box span {
+    position: absolute;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 50%;
+    background: rgba(90, 108, 121, 0.25);
+    animation: animate 2s linear infinite;
+    animation-delay: calc(0.8s * var(--i));
+}
+
+@keyframes animate {
+    0%
+    {
+        width: 50px;
+        height: 50px;
+    }
+    100%
+    {
+        width: 80px;
+        height: 80px;
+    }
+}
 
 .carrito {
   height: 50px;
@@ -147,6 +222,30 @@ img {
   float: right;
   margin-top: 30px;
   margin-right:20px;
+  transition: 0.3s;
+}
+
+.carrito:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 18px 0 rgba(0,0,0,0.2);
+}
+
+.count-buy {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    vertical-align: middle;
+    background-color: #D16F51;
+    float:right
+}
+
+.buy-counter {
+    position: absolute;
+    margin-top: -0.8px;
+    margin-left: 3.5px;
+    font-size: 14px;
+    font-style: normal;
+    color: white;
 }
 
 .menu {

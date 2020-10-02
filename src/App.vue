@@ -2,14 +2,14 @@
   <div id="app">
     <NavBar/>
     <div style="height: 100px"></div>
-    <div class="cards">
+    <div :class="[{'cards':!isMobile}, {'smallCard': isMobile}]">
       <SneakerCard color="black" bgColor="#222A2C"/>
       <SneakerCard color="yellow" bgColor="#D6BE4A"/>
       <SneakerCard color="green" bgColor="#00BF97"/>
       <SneakerCard color="pink" bgColor="#ED5ECD"/>
     </div>
     <div class="vec">
-      <div class="cards">
+      <div :class="[{'cards':!isMobile}, {'smallCard': isMobile}]">
         <SneakerCard color="blue" bgColor="#557CE2"/>
         <SneakerCard color="red" bgColor="#D16F51"/>
         <SneakerCard color="purple" bgColor="#8E60B4"/>
@@ -29,7 +29,25 @@ export default {
   components: {
     NavBar,
     SneakerCard
-  }
+  },
+  data:( ) => {
+    return {
+      isMobile: false
+    }
+  },
+  methods: {
+    handleView(){
+      this.isMobile = window.innerWidth <= 420;
+    }
+  },
+  mounted() {
+    window.addEventListener('resize', () => {
+        this.handleView();
+    });  
+  },
+  created() {
+    this.handleView();
+  },
 }
 </script>
 
@@ -51,6 +69,14 @@ export default {
   justify-content:space-evenly;
   margin-left: 100px;
   margin-right: 100px;
+}
+
+.smallCard{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-evenly;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .vec{

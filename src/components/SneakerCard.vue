@@ -1,7 +1,15 @@
 <template>
     <div class="card" :style="{backgroundColor: bgColor}">
-        <img class="shoe" alt="shoe" src="../assets/shoe-logo.png">
-        <h3 class="color">{{color}}</h3>
+        <transition name="fade">
+            <img class="shoe" alt="shoe" src="../assets/shoe-logo.png" v-if="!isDescription" @click="description">
+        </transition>
+        <transition name="fade">
+            <div class="des" v-if="isDescription" @click="description">
+                <b class="des-title">Sneaker {{color}}</b>
+                <p class="des-text">This is the vesion {{color}} of the best brand of sneaker. Only 50$, just press the buy button and add it to cart.</p>
+            </div>
+        </transition>
+        <h3 class="color" v-if="!isDescription">{{color}}</h3>
         <div class="container" :style="{backgroundColor: bgColor}">
             <button class="coin" @click="playAnimation">
                 <h2 class="simbol" v-if="isDollar">$</h2>
@@ -20,7 +28,7 @@
                 <b v-if="isDollar"> $</b>
                 <b v-if="!isDollar"> €</b>
             </button>
-            <button class="buy" :style="{color: bgColor}"><b>BUY</b></button>
+            <button class="buy" :style="{color: bgColor}" @click="buySneaker()"><b>BUY</b></button>
         </div>
     </div>
 </template>
@@ -37,7 +45,8 @@ export default {
             numberFrom: 50,
             numberTo: 43,
             duration: 2,
-            isDollar: true
+            isDollar: true,
+            isDescription: false
         };
     },   
     methods: {
@@ -55,6 +64,12 @@ export default {
                 this.numberTo = 50;
             }
             this.$refs.number2.play();
+        },
+        buySneaker() {
+            this.$root.$emit('newBuy');
+        },
+        description() {
+            this.isDescription = !this.isDescription;
         }
     }
 }
@@ -79,6 +94,34 @@ export default {
     margin-top: 15px;
 }
 
+.des {
+    width: 100%;
+    height: 145px;
+    text-align: center;
+    text-decoration: none;
+    font-family: Tahoma;
+    font-size: 20px;
+    color: white;
+    padding-top: 15px;
+}
+
+.des-text {
+    margin-top: 8px;
+    text-decoration: none;
+    font-family: Tahoma;
+    font-size: 18px;
+
+}
+
+.fade-enter-active {
+  transition: opacity 1s
+}
+
+.fade-enter,
+.fade-leave-to
+{
+  opacity: 0
+}
 .container {
     background-color: #222A2C;
     height: 80px;
