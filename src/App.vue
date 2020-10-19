@@ -1,16 +1,38 @@
 <template>
   <div id="app">
+    
     <NavBar/>
     <div style="height: 100px"></div>
+    <vue-particles
+        class="particles"
+        color="#6D59FF"
+        :particleOpacity="1"
+        :particlesNumber="80"
+        shapeType="circle"
+        :particleSize="4"
+        linesColor="#fff"
+        :linesWidth="1"
+        :lineLinked="true"
+        :lineOpacity="0.6"
+        :linesDistance="150"
+        :moveSpeed="3"
+        :hoverEffect="true"
+        hoverMode="grab"
+        :clickEffect="true"
+        clickMode="push"
+      >
+      </vue-particles>
+      
     <div :class="[{'cards':!isMobile}, {'smallCard': isMobile}]">
       <SneakerCard color="black" bgColor="#222A2C"/>
       <SneakerCard color="yellow" bgColor="#D6BE4A"/>
-      <SneakerCard color="green" bgColor="#00BF97"/>
+      <SneakerCard color="blue" bgColor="#557CE2"/>
       <SneakerCard color="pink" bgColor="#ED5ECD"/>
     </div>
+    
     <div class="vec">
       <div :class="[{'cards':!isMobile}, {'smallCard': isMobile}]">
-        <SneakerCard color="blue" bgColor="#557CE2"/>
+        <SneakerCard color="green" bgColor="#00BF97"/>
         <SneakerCard color="red" bgColor="#D16F51"/>
         <SneakerCard color="purple" bgColor="#8E60B4"/>
         <SneakerCard color="pink" bgColor="#B6804C"/>
@@ -79,8 +101,14 @@ export default {
   margin-right: 15px;
 }
 
+.particles {
+  position: absolute;
+  width: 100%;
+  height:65%;
+}
+
 .vec{
-  background-color: #5A6C79;
+  background-image: linear-gradient(to top, #359fe7, #2299ef, #1b91f6, #2989fb, #3f7ffe, #4a79ff, #5672ff, #626bff, #6467ff, #6762ff, #6a5eff, #6d59ff);
   margin-top: 20px;
   border-top-left-radius: 40px;
   transform: skewY(-2deg);
@@ -91,7 +119,7 @@ export default {
   content: "";
   width: 40px;
   height: 40px;
-  background-color: #5A6C79;
+  background-color: #6D59FF;
   position:absolute;
   top: -39px;
   right: 0;
@@ -115,9 +143,9 @@ export default {
 }
 
 .bg-bottom {
-  background-color: #5A6C79;
+  background-color: #359FE7;
   width: 100%;
-  height: 50px;
-  margin-top: -30px;
+  height: 150px;
+  margin-top: -50px;
 }
 </style>

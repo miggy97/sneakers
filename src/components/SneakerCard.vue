@@ -16,6 +16,7 @@
                 <h2 class="simbol" v-if="!isDollar">€</h2>
             </button>
             <button class="price">
+                
                 <number
                 class="bold transition"
                 ref="number2"
@@ -25,6 +26,7 @@
                 :to="numberTo"
                 :duration="duration"
                 easing="Power4.easeOut"/>
+
                 <b v-if="isDollar"> $</b>
                 <b v-if="!isDollar"> €</b>
             </button>
@@ -82,6 +84,7 @@ export default {
     border-radius: 30px;
     margin-top: 30px;
     transition: 0.3s;
+    z-index: 1;
 }
 
 .card:hover {

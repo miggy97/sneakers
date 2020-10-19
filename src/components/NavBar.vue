@@ -88,13 +88,14 @@ export default {
 
 
 .side-menu {
-    z-index: 1;
+    z-index: 2;
     width: 100%;
     height: 70px;
     position: fixed;
     text-align:right; 
     padding-top: 30px;
-    background-color: #809cb1;
+    background: rgb(109,89,255);
+    background: linear-gradient(180deg, rgba(109,89,255,1) 0%, rgba(53,159,231,1) 85%);
     font-family: Tahoma;
     font-style: normal;
     font-weight: bold;
@@ -121,7 +122,7 @@ li:hover{
     top: 0;
     width: 100%;
     height: 100px;
-    z-index: 1;
+    z-index: 2;
     transition: 1s transform cubic-bezier(0, .12, .14, 1);
 }
 
@@ -143,7 +144,7 @@ img {
     font-weight: bold;
     font-size: 20px;
     line-height: 43px;
-    color: #5A6C79;
+    color: #6D59FF;
 }
 
 .sortBrand {
@@ -214,7 +215,7 @@ img {
   width: 50px;
   border-radius: 50%;
   vertical-align: middle;
-  background-color: #5A6C79;
+  background-color: #6D59FF;
   background-image: url(../assets/carrito.png);
   background-repeat: no-repeat;
   background-size: contain;
@@ -256,7 +257,7 @@ img {
 }
 
 .about, .contact {
-    background-color:#5A6C79 ;
+    background-color:#6D59FF ;
     border: none;
     color: white;
     text-align: center;
@@ -271,6 +272,12 @@ img {
     margin-top: 40px;
     margin-right: 15px;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.about:hover, .contact:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 18px 0 rgba(0,0,0,0.2);
 }
 
 /*Hamburger animation */
@@ -291,7 +298,7 @@ img {
 	width: 100%;
 	height: 0.2em;
 	margin-top: -0.1em;
-	background-color: #5A6C79;
+	background-color: #6D59FF;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
@@ -309,7 +316,7 @@ img {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: #5A6C79;
+	background: #6D59FF;
 	content: '';
 	-webkit-transition: -webkit-transform 0.5s;
 	transition: transform 0.5s;
