@@ -25,7 +25,7 @@
             </div>
             <button class="contact" v-if="!mobileView">contact</button>
             <button class="about" v-if="!mobileView">about</button>
-            <a class="carrito" href="#">
+            <a class="carrito" href="#" v-scroll-to="'#checkout'">
                 <div class="count-buy" v-if="buyCount >= 1"><h6 class="buy-counter">{{ buyCount }}</h6></div>
                 <!-- Wave animation -->
                 <div :class="{'container': buyAnim}">

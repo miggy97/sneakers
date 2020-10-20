@@ -38,19 +38,25 @@
         <SneakerCard color="pink" bgColor="#B6804C"/>
       </div> 
     </div>
-    <div class="bg-bottom"></div>
+    <div class="bg-bottom1"></div>
+    <img id="checkout" class="vec-pay" src="./assets/vec-pay.svg">
+    <h1 class="checkout">CHECKOUT</h1>
+    <PayCard/>
+    <img src="./assets/vec-bottom.svg">
   </div>
 </template>
 
 <script>
 import NavBar from './components/NavBar'
 import SneakerCard from './components/SneakerCard'
+import PayCard from './components/PayCard'
 
 export default {
   name: 'App',
   components: {
     NavBar,
-    SneakerCard
+    SneakerCard,
+    PayCard
   },
   data:( ) => {
     return {
@@ -142,10 +148,31 @@ export default {
   transform: skewY(2deg);
 }
 
-.bg-bottom {
+.bg-bottom1 {
   background-color: #359FE7;
   width: 100%;
   height: 150px;
   margin-top: -50px;
+}
+
+.vec-pay {
+  width: 50%;
+  position:absolute;
+  float:right;
+  right: 0;
+}
+
+.checkout {
+  font-family: Tahoma;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 43px;
+  color: #6D59FF;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  margin-top: 100px;
 }
 </style>
