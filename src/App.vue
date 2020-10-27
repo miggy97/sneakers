@@ -42,7 +42,7 @@
     <img id="checkout" class="vec-pay" src="./assets/vec-pay.svg">
     <h1 class="checkout">CHECKOUT</h1>
     <PayCard/>
-    <img src="./assets/vec-bottom.svg">
+    <img class="vec-bottom" src="./assets/vec-bottom.svg">
   </div>
 </template>
 
@@ -160,6 +160,12 @@ export default {
   position:absolute;
   float:right;
   right: 0;
+}
+
+.vec-bottom {
+  width: 50%;
+  position: absolute;
+  z-index: -1;
 }
 
 .checkout {

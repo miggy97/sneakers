@@ -2,12 +2,18 @@
     <div class="card-wrapper">
         <div class="card">
             <div class="top-card">
-                <img class="menu" src="../assets/visa-menu.svg" alt="">
+                <div class="menu">
+                    <span></span>
+                </div>
                 <img class="settings" src="../assets/visa-settings.png" alt="">
                 <h1 class="payment">Payment</h1>
             </div> 
+
+            <!--plus symbol decoration-->
             <img class="plus-left" src="../assets/plus.png" alt="plus">
             <img class="plus-right" src="../assets/plus.png" alt="plus">
+
+            <!--visa card-->
             <div class="visa">
                 <img class="visa-logo" src="../assets/visa.png" alt="visa">
                 <div class="number-visa">
@@ -22,11 +28,11 @@
                     <img class="date" src="../assets/date.png" alt="date">
                 </div>
             </div>
+            <!-- END visa card -->
+
             <img class="plus-left-bot" src="../assets/plus.png" alt="plus">
             <div class="bottom-card">
                 <img class="pag" src="../assets/visa-pagination.png" alt="">
-            </div>
-            <div class="bottom-card">
                 <h1 class="total">TOTAL</h1>
             </div>
             <div class="bottom-card">
@@ -35,8 +41,6 @@
             <img class="plus-right-bot" src="../assets/plus.png" alt="plus">
             <div class="bottom-card">
                 <h1 class="pay-now">Pay Now</h1>
-            </div>
-            <div class="bottom-card">
                 <img class="touch-id" src="../assets/touch-id.png" alt="">
             </div>
         </div>
@@ -88,24 +92,52 @@ export default {
 
 .menu {
     float: left;
+    width: 25px;
+    height: 4px;
+    background-color: white;
     margin-left: 30px;
     margin-top: 30px;
-    transition: 0.3s;
+    cursor: pointer;
 }
 
-.menu:hover {
-    transform: scale(1.05);
+.menu::after {
+	float: left;
+    width: 50%;
+    height: 100%;
+    background-color: white;
+    margin-top: 8px;
+	content: '';
+}
+
+.menu::before {
+	float: left;
+    width: 0%;
+    height: 100%;
+    background-color: white;
+    margin-top: -8px;
+	content: '';
+}
+
+.menu:hover::after {
+    width: 100%;
+    transition: all 0.30s ease-in-out;
+}
+
+.menu:hover::before {
+    width: 100%;
+    transition: all 0.40s ease-in-out;
 }
 
 .settings {
     margin-right: 20px;
     margin-top: 20px;
     float:right;
-    transition: 0.3s;
+    cursor: pointer;
+    transition: transform .8s ease-in-out;
 }
 
 .settings:hover {
-    transform: scale(1.05);
+    transform: rotate(180deg);
 }
 
 .payment{
@@ -221,6 +253,7 @@ export default {
     position:absolute;
     left:0;
     margin-left: 10%;
+    z-index: -1;
 }
 
 .plus-left-bot {
@@ -228,6 +261,7 @@ export default {
     position:absolute;
     left:0;
     margin-left: 20%;
+    z-index: -1;
 }
 
 .plus-right {
@@ -235,6 +269,7 @@ export default {
     position:absolute;
     right: 0;
     margin-right: 10%;
+    z-index: -1;
 }
 
 .plus-right-bot {
@@ -242,6 +277,7 @@ export default {
     position:absolute;
     right: 0;
     margin-right: 25%;
+    z-index: -1;
 }
 
 </style>

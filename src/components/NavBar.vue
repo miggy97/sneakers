@@ -8,18 +8,16 @@
         </div>
         <div class="header" :class="{'open':showNav}">
             <!-- Logo -->
-            <transition name="anim" appear 
-            :appear-class="appear"
-            :appear-active-class="appear-active">
+            <transition name="anim" appear>
                 <img v-if="showLogo" alt="Sneakers logo" src="../assets/logo-sneakers.png" >
             </transition>
+
             <!-- Brand name -->
             <h1 class="sortBrand" v-if="!showLogo">SNK</h1>
-            <transition name="anim" appear 
-            :appear-class="appear"
-            :appear-active-class="appear-active">
+            <transition name="anim" appear>
                 <h1 class="brand" v-if="showBrand">SNEAKERS</h1>
             </transition>
+
             <div :class="['bt-menu-trigger', {'bt-menu-open': showNav}, 'menu']" v-if="mobileView" @click="showNav= !showNav">
                 <span></span>
             </div>
@@ -159,12 +157,11 @@ img {
     margin-left: 20px
 }
 
-.anim-enter-to,
-.anim-leave-to {
+.anim-enter-to {
   transition: all 2s ease;
 }
 
-.anim-enter, .anim-leave-to {
+.anim-enter {
   transform: translateX(50px);
   opacity: 0;
 }
