@@ -14,20 +14,38 @@
             <img class="plus-right" src="../assets/plus.png" alt="plus">
 
             <!--visa card-->
-            <div class="visa">
-                <img class="visa-logo" src="../assets/visa.png" alt="visa">
-                <div class="number-visa">
-                    <img class="num-img" src="../assets/visa-num.png" alt="number visa">
-                </div>
-                <div class="visa-group">
-                    <img style="margin-left:15px;" src="../assets/123.png" alt="subnumber">
-                    <img class="visa-name" src="../assets/visa-name.png" alt="visa name">
-                </div>
-                <div class="visa-date">
-                    <img class="valid" src="../assets/valid.png" alt="valid date">
-                    <img class="date" src="../assets/date.png" alt="date">
-                </div>
-            </div>
+            <vue-flip
+            active-click
+            height="100px"
+            width="325px">
+                <template  v-slot:front>
+                    <div class="visa">
+                        <img class="visa-logo" src="../assets/visa.png" alt="visa">
+                        <div class="number-visa">
+                            <img class="num-img" src="../assets/visa-num.png" alt="number visa">
+                        </div>
+                        <div class="visa-group">
+                            <img style="margin-left:15px;" src="../assets/123.png" alt="subnumber">
+                            <img class="visa-name" src="../assets/visa-name.png" alt="visa name">
+                        </div>
+                        <div class="visa-date">
+                            <img class="valid" src="../assets/valid.png" alt="valid date">
+                            <img class="date" src="../assets/date.png" alt="date">
+                        </div>
+                    </div>
+                </template>
+                <template v-slot:back>
+                    <div class="visa">
+                        <div class="magnetic-bar">
+                            <h1 class="phone-num">915 123 123</h1>
+                        </div>
+                        <div class="sec-code">
+                            <p class="sec-number">389</p>
+                        </div>
+                        <div class="label"></div>
+                    </div>
+                </template>
+            </vue-flip>
             <!-- END visa card -->
 
             <img class="plus-left-bot" src="../assets/plus.png" alt="plus">
@@ -48,8 +66,13 @@
 </template>
 
 <script>
+import VueFlip from 'vue-flip';
+
 export default {
     name: 'PayCard',
+    components: {
+        'vue-flip': VueFlip
+    },
     data () {
         return {
             price: '$0',
@@ -151,6 +174,7 @@ export default {
     line-height: 43px;
 }
 
+/*VISA CARD */
 .visa {
     width:300px;
     height: 180px;
@@ -159,8 +183,10 @@ export default {
     margin-top: -90px;
     border-radius: 15px;
     box-shadow: 0 3px 13px -6px #777;
+    cursor: pointer;
 }
 
+/* front card*/
 .visa-logo {
     float:right;
     margin-top: 20px;
@@ -202,6 +228,54 @@ export default {
 .date {
     width: 60%;
 }
+/*end front card*/
+
+/*back card*/
+.magnetic-bar {
+    width: 300px;
+    height: 40px;
+    background-color: #8770FF;
+    position: absolute;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.phone-num {
+    font-family:'Segoe UI';
+    font-style: normal;
+    font-weight: lighter;
+    color: white;
+    font-size: 18px;
+}
+
+.sec-code {
+    position: absolute;
+    width:100px;
+    height: 25px;
+    margin-top: 70px;
+    margin-left: 20px;
+    background-color: #8870ff4f;
+    text-align: right;
+}
+
+.sec-number {
+    margin-right: 8px;
+    margin-top: 2px;
+    font-style: italic;
+}
+
+.label {
+    position:absolute;
+    width: 60px;
+    height: 30px;
+    margin-top: 130px;
+    margin-left: 20px;
+    border-radius: 50px;
+    background-color: #8870ffb4;
+}
+
+/*end back card*/
+/*END VISA CARD */
 
 .bottom-card {
     width: 100%;

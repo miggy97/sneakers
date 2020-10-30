@@ -11,6 +11,7 @@
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-burger": "^1.1.0",
+    "vue-flip": "^1.0.2",
     "vue-number-animation": "^1.0.5",
     "vue-scrollto": "^2.19.1"
   },
