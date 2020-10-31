@@ -1,14 +1,14 @@
 <template>
     <div class="card" :style="{backgroundColor: bgColor}">
-        <transition name="fade">
-            <img class="shoe" alt="shoe" src="../assets/shoe-logo.png" v-if="!isDescription" @click="description">
-        </transition>
-        <transition name="fade">
-            <div class="des" v-if="isDescription" @click="description">
-                <b class="des-title">Sneaker {{color}}</b>
-                <p class="des-text">This is the vesion {{color}} of the best brand of sneaker. Only 50$, just press the buy button and add it to cart.</p>
-            </div>
-        </transition>
+        
+        <img class="shoe" alt="shoe" src="../assets/shoe-logo.png" v-if="!isDescription" @click="description">
+    
+    
+        <div class="des" v-if="isDescription" @click="description">
+            <b class="des-title">Sneaker {{color}}</b>
+            <p class="des-text">This is the version {{color}} of the best brand of sneaker. Only 50$, just press the buy button and add it to cart.</p>
+        </div>
+    
         <h3 class="color" v-if="!isDescription">{{color}}</h3>
         <div class="container" :style="{backgroundColor: bgColor}">
             <button class="coin" @click="playAnimation">
@@ -95,6 +95,12 @@ export default {
 .shoe{
     width:100%;
     margin-top: 15px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.shoe:hover {
+    transform: scale(1.08);
 }
 
 .des {
@@ -106,6 +112,7 @@ export default {
     font-size: 20px;
     color: white;
     padding-top: 15px;
+    cursor: pointer;
 }
 
 .des-text {
@@ -116,15 +123,7 @@ export default {
 
 }
 
-.fade-enter-active {
-  transition: opacity 1s
-}
 
-.fade-enter,
-.fade-leave-to
-{
-  opacity: 0
-}
 .container {
     background-color: #222A2C;
     height: 80px;
