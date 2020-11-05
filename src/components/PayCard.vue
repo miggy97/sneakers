@@ -2,11 +2,19 @@
     <div class="card-wrapper">
         <div class="card">
             <div class="top-card">
-                <div class="menu">
+                <div class="menu" @click="showMenu = !showMenu; showSettings = false">
                     <span></span>
                 </div>
-                <img class="settings" src="../assets/visa-settings.png" alt="">
+                <transition name="display" appear>
+                    <div class="menu-panel" v-if="showMenu"></div>
+                </transition>
+                
+
+                <img class="settings" src="../assets/visa-settings.png" alt="settings" @click="showSettings = !showSettings; showMenu = false">
                 <h1 class="payment">Payment</h1>
+                <transition name="expand" appear>
+                    <div class="settings-panel" v-if="showSettings"></div>
+                </transition>
             </div> 
 
             <!--plus symbol decoration-->
@@ -76,7 +84,9 @@ export default {
     data () {
         return {
             price: '$0',
-            priceNumber: 0
+            priceNumber: 0,
+            showMenu: false,
+            showSettings: false
         }
     },
     created(){
@@ -151,6 +161,29 @@ export default {
     transition: all 0.40s ease-in-out;
 }
 
+.menu-panel {
+    position: absolute;
+    width: 250px;
+    height: 400px;
+    background-color: blue;
+    margin-left: 50px;
+    margin-top: 50px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-image: linear-gradient(to bottom, #359fe7, #2299ef, #1b91f6, #2989fb, #3f7ffe, #4a79ff, #5672ff, #626bff, #6467ff, #6762ff, #6a5eff, #6d59ff);
+    box-shadow: 0 5px 13px -1px #777;
+    z-index: 1;
+}
+
+.display-enter-to, .display-leave-active {
+  transition: all 2s ease;
+}
+
+.display-enter, .display-leave-to{
+  height: 0px;
+}
+
 .settings {
     margin-right: 20px;
     margin-top: 20px;
@@ -163,6 +196,27 @@ export default {
     transform: rotate(180deg);
 }
 
+.settings-panel {
+    position: absolute;
+    width: 250px;
+    height: 400px;
+    background-color: blue;
+    margin-left: 48px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-image: linear-gradient(to bottom, #359fe7, #2299ef, #1b91f6, #2989fb, #3f7ffe, #4a79ff, #5672ff, #626bff, #6467ff, #6762ff, #6a5eff, #6d59ff);
+    box-shadow: 0 5px 13px -1px #777;
+    z-index: 1;
+}
+
+.expand-enter-to, .expand-leave-active {
+  transition: all 2s ease;
+}
+
+.expand-enter, .expand-leave-to{
+  height: 0px;
+}
 .payment{
     padding-top: 10px;
     padding-left: 5px;
@@ -316,6 +370,7 @@ export default {
 .touch-id {
     margin-top: 10px;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .touch-id:hover {
